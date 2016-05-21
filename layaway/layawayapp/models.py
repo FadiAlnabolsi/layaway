@@ -21,7 +21,7 @@ class Events(models.Model):
     date = models.DateTimeField(auto_now=True)
     city = models.TextField()
     state = models.TextField()
-    artist = models.ForeignKey(Artist, related_name='artist', null=True, blank=True)
+    artist = models.ManyToManyField(Artist, related_name='artist', blank=True)
 
 class TicketInfo(models.Model):
     ticket_type = models.CharField(max_length=12, choices=TICKET_CHOICES)

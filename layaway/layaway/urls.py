@@ -13,9 +13,20 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url
+from django.conf.urls import include, url
 from django.contrib import admin
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+
+    # user auths urls
+    url(r'^accounts/login/$', 'layaway.views.login'),
+    url(r'^accounts/auth/$', 'layaway.views.auth_view'),
+    url(r'^accounts/logout/$', 'layaway.views.logout'),
+    url(r'^accounts/loggedin/$', 'layaway.views.loggedin'),
+    url(r'^accounts/invalid/$', 'layaway.views.invalid_login'),
+    url(r'^accounts/register/$', 'layaway.views.register_user'),
+    url(r'^accounts/register_success/$', 'layaway.views.register_success'),
+
+    url(r'', include('layawayapp.urls')),
 ]

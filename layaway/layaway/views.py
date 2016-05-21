@@ -4,10 +4,6 @@ from django.contrib import auth
 from django.core.context_processors import csrf
 from django.contrib.auth.models import User
 
-from secretsanta.forms import UserCreationForm
-
-from secretsantaapp.models import UserInfo
-
 def login(request):
     c = {}
     c.update(csrf(request))

@@ -20,7 +20,7 @@ def about_us(request):
     user = User.objects.get(username=request.user.username)
     data['user'] = user
 
-    return render('about_us.html', {
+    return render(request, 'about_us.html', {
         'data': data
         })
 

@@ -4,6 +4,7 @@ from django.contrib import auth
 from django.core.context_processors import csrf
 from django.contrib.auth.models import User
 from .forms import UserCreationForm
+from layawayapp.models import UserInfo
 
 def login(request):
     c = {}
@@ -13,13 +14,14 @@ def login(request):
 def auth_view(request):
     username = request.POST.get('username', '')
     password = request.POST.get('password', '')
-    user = auth.authenticate(username=username, password=password)
 
+    user = auth.authenticate(username=username, password=password)
     if user is not None:
         auth.login(request, user)
         return HttpResponseRedirect('/')
     else:
-        return render_to_response("invalid.html")
+        return HttpResponseRedirect("/login")
+
 
 def loggedin(request):
     return render_to_response('loggedin.html',
@@ -43,9 +45,10 @@ def register_user(request):
             initializeUserInfo.user = User.objects.get(username=username)
             initializeUserInfo.save()
 
-            return HttpResponseRedirect('/accounts/register_success')
+            return HttpResponseRedirect('/')
 
         else:
+            args = {}
             args.update(form.errors)
             args.update(csrf(request))
             return render_to_response('register.html', args) 

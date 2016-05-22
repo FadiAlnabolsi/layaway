@@ -8,7 +8,7 @@
 -->
 <html>
 	<head>
-		<title>Sign_Up</title>
+		<title>Sign In</title>
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="description" content="" />
 		<meta name="keywords" content="" />
@@ -36,31 +36,7 @@
 							<!-- Nav -->
 								<nav id="nav">
 									<ul>
-										<li class="active"><a href="index.html">Home</a></li>
-										<li>
-											<a href="">Dropdown</a>
-											<ul>
-												<li><a href="#">Lorem ipsum dolor</a></li>
-												<li><a href="#">Magna phasellus</a></li>
-												<li><a href="#">Etiam dolore nisl</a></li>
-												<li>
-													<a href="">Phasellus consequat</a>
-													<ul>
-														<li><a href="#">Lorem ipsum dolor</a></li>
-														<li><a href="#">Phasellus consequat</a></li>
-														<li><a href="#">Magna phasellus</a></li>
-														<li><a href="#">Etiam dolore nisl</a></li>
-														<li><a href="#">Veroeros feugiat</a></li>
-													</ul>
-												</li>
-												<li><a href="#">Veroeros feugiat</a></li>
-											</ul>
-										</li>
-										<li><a href="left-sidebar.html">Left Sidebar</a></li>
-										<li><a href="ticket.html">Right Sidebar</a></li>
-										<li><a href="no-sidebar.html">No Sidebar</a></li>
-                                        <li><a href="left-sidebar-copy">copy</a></li>
-									</ul>
+										<li class="active"><a href="/">Home</a></li>	
 								</nav>
 						</div>
 					</div>
@@ -74,18 +50,16 @@
 					<header class="major">
 					  <h2>Sign In</h2>
 					</header>
-					<div aria-hidden="true" class="placeholder">Email</div><input aria-invalid="true" aria-describedby="js_a" aria-haspopup="true" aria-owns="js_2" class="inputtext _58mg _5dba _2ph-" data-type="text" name="reg_email__" aria-required="1" placeholder="" id="u_0_6" aria-label="Mobile number or email" type="text">
-                    <i class="_5dbc img sp_IIuy94UEXRV sx_cb4753"></i><i class="_5dbd img sp_IIuy94UEXRV sx_7f7f20"></i>                            
-                     <div aria-hidden="true" class="placeholder"> Password</div><input aria-describedby="js_c" aria-haspopup="true" aria-owns="js_b" class="inputtext _58mg _5dba _2ph-" data-type="text" name="reg_passwd__" aria-required="1" placeholder="" id="u_0_b" aria-label="New password" type="password"><i class="_5dbc img sp_IIuy94UEXRV sx_cb4753"></i><i class="_5dbd img sp_IIuy94UEXRV sx_7f7f20"></i>                   
-                     <div class="clearfix"><button type="submit" class="_6j mvm _6wk _6wl _58mi _3ma _6o _6v" name="websubmit" id="u_0_j">Sign in</button><span class="hidden_elem _58ml" id="u_0_z"></span></div>
-                      </section>
-				
 
-		
-			
+					<form action="/accounts/auth/" method="post">{% csrf_token %}
+						<label for="username">User Name:</label>
+						<input type="text" name="username" value="" id="username" class="input-group">
+						
+						<label for="password">Password: </label>
+						<input type="password" name="password" value="" id="password" class="input-group">
 
-			
+						<input type="submit" value="Login" class="btn btn-primary" />
+					</form>	
 	<!-- Footer -->
-    
 		</div>
 </html>

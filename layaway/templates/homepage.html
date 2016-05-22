@@ -1,0 +1,186 @@
+{% load staticfiles %}
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Solarize by TEMPLATED</title>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<!--[if lte IE 8]><script src="css/ie/html5shiv.js"></script><![endif]-->
+		<script src="static/js/jquery.min.js"></script>
+		<script src="static/js/jquery.dropotron.min.js"></script>
+		<script src="static/js/skel.min.js"></script>
+		<script src="static/js/skel-layers.min.js"></script>
+		<script src="static/js/init.js"></script>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/homepage/skel.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/homepage/style.css' %}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css">
+<!-- Add the slick-theme.css if you want default styling -->
+<link rel="stylesheet" type="text/css" href="static/css/homepage/slick-theme.css"/>
+<style>
+	.slick-slide {
+		padding: 0 5px;
+		box-sizing: border-box;
+	}
+	.slick-slide img{
+		border: 5px solid #000000;
+	}
+</style>
+	</head>
+	<body class="homepage">
+
+		<!-- Header Wrapper -->
+	<div class="wrapper style1">
+			
+			<!-- Header -->
+				<div id="header">
+					
+							
+						<!-- Logo -->
+							<h1><a href="#" id="logo">Solarize</a></h1>
+						
+						<!-- Nav -->
+							<nav id="nav">
+								<ul>
+									<li class="active"><a href="/">Home</a></li>
+									<li><a>Account</a>
+									  <ul>
+                                        {% if user.is_anonymous %}
+											<li><a href="/accounts/register/">Sign up</a></li>
+											<li><a href="/accounts/login/">sign in</a></li>	
+                                        {% else %}
+                                            <li><a href="/my_account">My Account</a></li>
+                                        {% endif %}			
+                                     </ul>
+								  </li>
+									<li><a href="Events.html">Events</a></li>
+									<li><a href="Ticket.html">Ticket</a></li>
+								</ul>
+							</nav>
+	
+					
+				</div>
+				
+			<!-- Banner -->
+				<div id="banner">
+					<section class="container">
+					  <h2>vita Ticket</h2>
+					</section>
+				</div>
+
+			</div>
+							
+		<!-- Section Two -->
+			<div class="wrapper style3">    
+				<section class="container">
+				  <header class="major">
+						<h2>mission statement</h2>
+					</header>
+				  <p>Providing the most convenient way to purchase tickets to all of your favourite sporting and concert events</p>
+					
+				</section>
+	</div>
+    
+    <div class="wrapper style2">
+				<section class="container">
+					<div class="row-fluid">
+						<div class="u">
+                          <div class="span6">                    
+                          <div>
+                          <section>
+                          <img  src="https://lasentinel.net/wp-content/uploads/sites/5/2015/09/THZ-Photo-Library-Beyonce-1.jpg" width="500" height="394" align="right"/>
+                          </section>
+                          </div>
+                          </div>
+							<header class="major">
+                            <header class="major">
+                            <header class="major">
+								<h2>Events coming to you</h2>
+								<span class="byline"><a href="Events.html">radio station jingle ball</a></span> 
+                                	<p> The Filmore Detroit </p>
+                              </header>
+                                
+                                	<span class="byline"><a href="Events.html">selena gomez concert</a></span>
+                                    	<p> The Palace of Auburn Hills </p>
+                           	  </header>
+                                    	<span class="byline"><a href="Events.html">drake world tour</a></span>
+                                        	<p> DTE Energy Music Theater </p>
+                          </header>
+                                                    
+
+                                        <!-- <div class="slideshow" align="right">                                       
+                                     
+ 										<div>
+                                        	<img src="https://lasentinel.net/wp-content/uploads/sites/5/2015/09/THZ-Photo-Library-Beyonce-1.jpg" width="500" height="394" align="right"/>
+                                        </div>
+                                        <div>
+                                        	<img src="https://lasentinel.net/wp-content/uploads/sites/5/2015/09/THZ-Photo-Library-Beyonce-1.jpg" width="500" height="394" align="right"/>
+                                        </div>
+                                        <div>
+                                        	<img src="https://lasentinel.net/wp-content/uploads/sites/5/2015/09/THZ-Photo-Library-Beyonce-1.jpg" width="500" height="394" align="right"/>
+                                        </div>
+                                        <div>
+                                        	<img src="https://lasentinel.net/wp-content/uploads/sites/5/2015/09/THZ-Photo-Library-Beyonce-1.jpg" width="500" height="394" align="right"/>
+                                        </div>
+                                        <div>
+                                        	<img src="https://lasentinel.net/wp-content/uploads/sites/5/2015/09/THZ-Photo-Library-Beyonce-1.jpg" width="500" height="394" align="right"/>
+                                        </div>
+                                        </div> --> 
+                                        
+                      </div>
+                  </div>                                                  
+      </section>	
+    </div>
+
+		<!-- Section Three -->
+			
+		<!-- Team -->
+	<!-- Footer -->
+		<div id="footer">
+			<section class="container">
+				<header class="major">
+					<h2>Connect with us</h2>
+					
+				</header>
+				<ul class="icons">
+					<li class="active"><a href="#" class="fa fa-facebook"><span>Facebook</span></a></li>
+					<li><a href="#" class="fa fa-twitter"><span>Twitter</span></a></li>
+					<li><a href="#" class="fa fa-dribbble"><span>Pinterest</span></a></li>
+					<li><a href="#" class="fa fa-google-plus"><span>Google+</span></a></li>
+				</ul>
+				<hr />
+			</section>
+		
+						
+		</div>
+	<script type="text/javascript" src="static/js/slick.min.js"></script>
+    <script type="text/javascript">
+        	$('.slideshow').slick({
+			  centerMode: true,
+			  centerPadding: '60px',
+			  slidesToShow: 3,
+			  responsive: [
+				{
+				  breakpoint: 768,
+				  settings: {
+					arrows: false,
+					centerMode: true,
+					centerPadding: '40px',
+					slidesToShow: 3
+				  }
+				},
+				{
+				  breakpoint: 480,
+				  settings: {
+					arrows: false,
+					centerMode: true,
+					centerPadding: '40px',
+					slidesToShow: 1
+				  }
+				}
+			  ]
+			});
+				
+        </script>
+</body>
+</html>

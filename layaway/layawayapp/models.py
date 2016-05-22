@@ -6,6 +6,8 @@ TICKET_CHOICES = (
     ('GEN', 'GENERAL')
 )
 
+
+
 class UserInfo(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     phone_number = models.CharField(max_length=12, null=True, blank=True)
@@ -16,6 +18,12 @@ class Artist(models.Model):
     biography = models.TextField()
     image = models.TextField()
 
+    def __str__(self):
+        return self.first_name + ' ' + self.last_name
+
+    class Meta:
+        verbose_name_plural = 'Artists'
+
 class Events(models.Model):
     name = models.TextField()
     date = models.DateTimeField(auto_now=True)
@@ -23,10 +31,22 @@ class Events(models.Model):
     state = models.TextField()
     artist = models.ManyToManyField(Artist, related_name='artist', blank=True)
 
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name_plural = 'Event'
+
 class TicketInfo(models.Model):
     ticket_type = models.CharField(max_length=12, choices=TICKET_CHOICES)
     maxTickets = models.IntegerField()
     event = models.ForeignKey(Events, related_name='ticket_info_events')
+
+    def __str__(self):
+        return self.event.name + ' ' + self.ticket_type
+
+    class Meta:
+        verbose_name_plural = 'Ticket Info'
 
 class Ticket(models.Model):
     ticket_type = models.CharField(max_length=12, choices=TICKET_CHOICES)
@@ -36,3 +56,8 @@ class Ticket(models.Model):
     confirmation_number = models.CharField(max_length=20)
     ticket_number = models.CharField(max_length=20)
 
+    def __str__(self):
+        return self.event.name + ' ' + self.ticket_type
+
+    class Meta:
+        verbose_name_plural = 'Tickets'

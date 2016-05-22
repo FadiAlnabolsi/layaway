@@ -3,6 +3,7 @@ from django.http import HttpResponseRedirect
 from django.contrib import auth
 from django.core.context_processors import csrf
 from django.contrib.auth.models import User
+from .forms import UserCreationForm
 
 def login(request):
     c = {}
@@ -51,6 +52,8 @@ def register_user(request):
 
     args = {}
     args.update(csrf(request))
+
+    form = UserCreationForm()
     args['form'] = UserCreationForm()
 
     return render_to_response('register.html', args)

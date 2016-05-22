@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.http import HttpResponseRedirect
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .models import Ticket, Events
 
@@ -22,13 +23,18 @@ def about_us(request):
         })
 
 def my_account(request):
-    tickets = Ticket.objects.filter(user=request.user)
+    if request.user.is_anonymous():
+        return HttpResponseRedirect('/')
+
+    tickets = Ticket.objects.filter(customer=request.user)
+    user = User.objects.get(user=request.user)
+
     data = {}
+
     data['tickets'] = tickets
+    data['user'] = user
 
-    #paginator for tickets
-
-    return render('my_account.html', {
+    return render(request, 'my_account.html', {
         'data':data
         })
 
@@ -38,7 +44,7 @@ def events(request):
     data['events'] = events
 
     if (request.user.is_anonymous()):
-        return render('event.html', {
+        return render(request, 'events.html', {
             'data':data
             })
 
@@ -48,7 +54,7 @@ def events(request):
     user = User.objects.get(user=request.user)
     data['user'] = user
 
-    return render('event.html', {
+    return render(request, 'events.html', {
         'data':data
         })
 
@@ -58,7 +64,7 @@ def event_instance(request, id):
     data['event'] = event
 
     if (request.user.is_anonymous()):
-        return render('event.html', {
+        return render(request, 'event.html', {
             'data':data
             })
 
@@ -66,7 +72,7 @@ def event_instance(request, id):
     user = User.objects.get(user=request.user)
     data['user'] = user
 
-    return render('event.html', {
+    return render(request, 'event.html', {
         'data':data
         })
 

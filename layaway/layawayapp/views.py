@@ -1,7 +1,9 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.contrib.auth.models import User
 from .models import Ticket, Events
+
 
 # Create your views here.
 def homepage(request):
@@ -15,7 +17,7 @@ def about_us(request):
         return render(request, 'about_us.html')
 
     data = {}
-    user = User.objects.get(user=request.user)
+    user = User.objects.get(username=request.user.username)
     data['user'] = user
 
     return render('about_us.html', {
@@ -27,7 +29,7 @@ def my_account(request):
         return HttpResponseRedirect('/')
 
     tickets = Ticket.objects.filter(customer=request.user)
-    user = User.objects.get(user=request.user)
+    user = User.objects.get(username=request.user.username)
 
     data = {}
 
@@ -51,7 +53,7 @@ def events(request):
     #paginator for events
 
     data = {}
-    user = User.objects.get(user=request.user)
+    user = User.objects.get(username=request.user.username)
     data['user'] = user
 
     return render(request, 'events.html', {
@@ -69,7 +71,7 @@ def event_instance(request, id):
             })
 
     data = {}
-    user = User.objects.get(user=request.user)
+    user = User.objects.get(username=request.user.username)
     data['user'] = user
 
     return render(request, 'event.html', {

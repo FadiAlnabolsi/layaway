@@ -24,11 +24,12 @@ class Artist(models.Model):
 
 class Events(models.Model):
     name = models.TextField()
-    date = models.DateTimeField(auto_now=True)
+    date = models.DateTimeField()
     city = models.TextField()
     state = models.TextField()
     artist = models.ManyToManyField(Artist, related_name='artist', blank=True)
-
+    img = models.TextField()
+    
     def __str__(self):
         return self.name
 
@@ -38,6 +39,7 @@ class Events(models.Model):
 class TicketInfo(models.Model):
     ticket_type = models.CharField(max_length=12, choices=TICKET_CHOICES)
     maxTickets = models.IntegerField()
+    price = models.DecimalField(max_digits=7, decimal_places=2)
     event = models.ForeignKey(Events, related_name='ticket_info_events')
 
     def __str__(self):

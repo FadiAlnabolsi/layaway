@@ -8,5 +8,6 @@ urlpatterns = [
     url(r'^about_us$', 'layawayapp.views.about_us'),
     url(r'^my_account$', 'layawayapp.views.my_account'),
     url(r'^events$', 'layawayapp.views.events'),
-    url(r'^event/(?P<id>[0-9]+)', 'layawayapp.views.event_instance')
+    url(r'^events/(?P<id>[0-9]+)', 'layawayapp.views.event_instance'),
+    url(r'^event/purchase/(?P<id>[0-9]+)', 'layawayapp.views.purchaseTix')
 ]

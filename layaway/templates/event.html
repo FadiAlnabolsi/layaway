@@ -1,0 +1,111 @@
+
+<!-- saved from url=(0094)file:///C:/Users/student/Downloads/layaway-master/layaway-master/layaway/templates/events.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></head><body>{% load staticfiles %}
+
+
+<!--
+    Solarize by TEMPLATED
+    templated.co @templatedco
+    Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+
+    
+<html>
+    <head>
+        <title>Event</title>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <!--[if lte IE 8]><script src="css/ie/html5shiv.js"></script><![endif]-->
+        <script src="../../static/js/jquery.min.js"></script>
+        <script src="../../static/js/jquery.dropotron.min.js"></script>
+        <script src="../../static/js/skel.min.js"></script>
+        <script src="../../static/js/skel-layers.min.js"></script>
+        <script src="../../static/js/init.js"></script>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/homepage/skel.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/homepage/style.css' %}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css">
+        <!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
+    </head>
+    <body>
+    
+    
+
+        <!-- Header Wrapper -->
+            <div class="wrapper style1">
+            
+                <!-- Header -->
+                  <div id="header">
+                        <div class="container">
+                                
+                            <!-- Logo -->
+                                <h1><a href="/events" id="logo">Event</a></h1>
+                            
+                            <!-- Nav -->
+                                <nav id="nav">
+                                    <ul>
+                                        <li class="active"><a href="/">Home</a></li>    
+                                        <li><a href="/my_account">My Account</a></li>
+                                        <li><a href="/events">Events</a></li>
+                                        <li><a href="/about_us">About Us</a></li>
+                                    </ul>
+                                </nav>
+                        </div>
+                    </div>
+            </div>
+        
+        <!-- Main -->
+            <div id="main" class="wrapper style4">
+                <div class="container">
+                    <div class="row">
+
+                        <!-- Sidebar -->
+                        <div id="sidebar" class="4u">
+                          <section>
+                                    <header class="major">
+                                        <h2>Event</h2>
+                                  </header>
+                            </section>
+                        </div>
+
+                        <!-- Content -->
+                        <div id="content" class="8u skel-cell-important major">
+                            <section>     
+                                    <p>{{data.event.name}}</p>                      
+                                    <a href="/events/{{event.id}}"><p style="color: black;">{{event.name}}</p></a>
+                                    <a class="image"><img src="{{data.event.img}}" style="width:300px;" alt=""></a>
+                                    <p>{{data.event.city}}</p>
+                                    <p>{{data.event.state}}</p>
+                                    <p>{{data.event.date}}</p>
+                                    <p>{{data.event.location}}</p>                  
+                            </section>
+                        </div>
+                        
+                        <h2>Total Price: {{data.ticketInfo.price}} </h2>
+                        <h4>Ticket Type: {{data.ticketInfo.ticket_type}}</h4>
+                        <h4>Tickets Remaining:</h4>
+                         {% if data.alreadyPurchased == False %} #already purchased
+                            {% if user.is_authenticated %} # authenticated
+                                {% if data.canPurchase == False %} #still tickets
+                                    SOLD OUT
+                                {% else %}
+                                    <p>{{data.remainingTix}}</p>
+                                    <a href="/event/purchase/{{data.event.id}}">
+                                        Total Price: {{data.ticketInfo.Price}}
+                                        <button>
+                                             Finance for {{data.financePrice}}
+                                        </button>
+                                    </a>
+                                {% endif %}
+                            {% endif %}
+                        {% endif %}
+
+                       {% if data.alreadyPurchased %}
+                             Already financed tickets to this concert!
+                       {% endif %} 
+
+
+                    </div>
+                </div>
+            </div>
+</body></html>

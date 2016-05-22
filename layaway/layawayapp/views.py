@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.models import User
-from .models import Ticket, Events
+from .models import Ticket, Events, TicketInfo
 
 
 # Create your views here.
@@ -52,7 +52,6 @@ def events(request):
 
     #paginator for events
 
-    data = {}
     user = User.objects.get(username=request.user.username)
     data['user'] = user
 
@@ -64,19 +63,76 @@ def event_instance(request, id):
     event = Events.objects.get(id=id)
     data = {}
     data['event'] = event
+    data['alreadyPurchased'] = False
 
     if (request.user.is_anonymous()):
         return render(request, 'event.html', {
             'data':data
             })
 
-    data = {}
+    TI = TicketInfo.objects.get(event=event)
+
+    try:
+        Ticket.objects.get(customer=request.user, event=event)
+        data['alreadyPurchased'] = True
+
+    except Exception as e:
+        data['alreadyPurchased'] = False
+
     user = User.objects.get(username=request.user.username)
     data['user'] = user
+    data['ticketInfo'] = TI
+
+    totalTix = TI.maxTickets
+    usedTix = Ticket.objects.filter(event=event).count()
+    financePrice = float(TI.price) * .25
+
+    remainingTix = totalTix - usedTix
+
+    if remainingTix <= 0:
+        data['canPurchase'] = False
+    else:
+        data['canPurchase'] = True
+
+    data['totalTix'] = TI.maxTickets
+    data['usedTix'] = Ticket.objects.filter(event=event).count()
+    data['remainingTix'] = TI.maxTickets - data['usedTix']
+    data['financePrice'] = financePrice
 
     return render(request, 'event.html', {
         'data':data
         })
+
+def purchaseTix(request, id):
+    event = Events.objects.get(id=id)
+    data = {}
+    data['event'] = event
+
+    if request.user.is_anonymous():
+        return render(request, 'event.html', {
+            'data':data
+            })
+
+    try:
+        Ticket.objects.get(customer=request.user, event=event)
+        data['alreadyPurchased'] = True
+    except Exception as e:
+        data['alreadyPurchased'] = False
+
+    if data['alreadyPurchased'] == True:
+        return HttpResponseRedirect('/events/' + event.id)
+
+    TI = TicketInfo.objects.get(event=event)
+
+    Ticket.objects.create(
+                customer=request.user, 
+                event=event, 
+                price=TI.price,
+                ticket_type=TI.ticket_type,
+                )
+
+    return HttpResponseRedirect('/my_account')
+
 
 
 

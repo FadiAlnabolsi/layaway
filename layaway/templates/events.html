@@ -69,20 +69,17 @@
                         </div>
 
                         <!-- Content -->
-                        <div id="content" class="8u skel-cell-important">
+                        <div id="content" class="8u skel-cell-important major">
                             <section>
-                                <header class="major">
-                                    <h2>Where In Town</h2>
-                                </header>
                                 
-                                {% for event in data.events %}
-                                
-                                <a href="/events/{{event.id}}"><p>{{event.name}}</p></a>
-                                <p>{{event.city}}</p>
-                                <p>{{event.state}}</p>
-                                <p>{{event.date}}</p>
-                                <p>{{event.location}}</p>
-
+                                {% for event in data.events %}                             
+                                    <a href="/events/{{event.id}}"><p style="color: black;">{{event.name}}</p></a>
+                                    <a class="image"><img src="{{event.img}}" style="width: 300px;" alt=""></a>
+                                    <p>{{event.city}}</p>
+                                    <p>{{event.state}}</p>
+                                    <p>{{event.date}}</p>
+                                    <p>{{event.location}}</p>
+                                    <br>
                                 {% endfor %}
                                                         
                             </section>

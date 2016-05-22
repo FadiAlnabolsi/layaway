@@ -57,6 +57,10 @@
 			font-size: 1.2em;
 		}
 
+	.wrapper .style2 .container{
+		padding-left: 500px;
+	}
+
 	.wrapper.style3 .container {
 		padding-left: 1em;
 		padding-right: 1em;
